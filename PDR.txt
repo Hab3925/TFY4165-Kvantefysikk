@@ -1,0 +1,18 @@
+The propulstion avionics software team is working closeley with the flight computer software team, which is
+presenting later today, on making the software for the rocket. This means that the engine control unit and the 
+flight computer will use the same drivers and architecture to perform different tasks. Software will go more indepth
+on the drivers and architecture in their presentation, while i will give an overview and highlight the differences
+between the systems. Both system will use Azure RTOS as their OS, to enable prioritizing tasks depending on their
+importance. Our system can, in the same way as the flight computer, be separated into two main tasks. Actuating
+valves and handeling sensor data. This can again be separated into what happens on the launchpad, during ignition
+and during flight.
+
+Here we have an overview of what tasks should be given what priority during the two stages. On the pad, reading and
+transmiting sensor data to the ground station is given the highest priority. This is so that the people at the ground
+station can react if the sensors indicate a hazardous situation while people are on the pad. During ignition and flight 
+however the finite state machine has the highest priority, as everything that happens from then is following a
+predetermined proceedure which needs to follow a set timing for nominal operation. 
+
+Here is our finite state machine. It is an overview of what position all of the valves actuated by the engine
+control unit are at different stages of the launch. There should however be a way to open the airing valves from 
+the ground station during filling, in case of overpressure in the tanks.
